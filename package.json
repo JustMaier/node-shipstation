@@ -1,0 +1,27 @@
+{
+  "name": "node-shipstation",
+  "version": "0.1.0",
+  "description": "Simplify nodeJS integration with shipstation",
+  "main": "nodeshipstation.js",
+  "scripts": {
+    "test": "echo \"There ain't no test, is there?\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/justmaier/node-shipstation.git"
+  },
+  "keywords": [
+    "shipstation",
+    "integration",
+    "api"
+  ],
+  "author": "Justin Maier <just.maier@gmail.com> (http://justinmaier.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/justmaier/node-shipstation/issues"
+  },
+  "homepage": "https://github.com/justmaier/node-shipstation",
+  "dependencies": {
+    "request": "^2.53.0"
+  }
+}
