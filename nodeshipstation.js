@@ -67,7 +67,24 @@ module.exports = function(apiKey, apiSecret){
 			return new apiRequest(parameterizedUrl, function(url, options, callback){
 				api.del(url, options, callback);
 			})
-		}
+		},
+		merge = function(target, source) {
+		    if ( typeof target !== 'object' ) target = {};
+		    for (var property in source) {
+		        if ( source.hasOwnProperty(property) ) {
+		            var sourceProperty = source[ property ];
+		            if ( typeof sourceProperty === 'object' ) {
+		                target[ property ] = merge( target[ property ], sourceProperty );
+		                continue;
+		            }
+		            target[ property ] = sourceProperty;
+		        }
+		    }
+		    
+		    for (var a = 2, l = arguments.length; a < l; a++) merge(target, arguments[a]);
+		    
+		    return target;
+		};
 
 	var api = {
 		get: function(link, options, callback){
@@ -125,6 +142,13 @@ module.exports = function(apiKey, apiSecret){
 		getOrdersByTag: '/orders/listbytag', // requires {orderStatus, tagId}
 		getOrder: '/orders/{id}',
 		addOrder: '/orders/createorder', // http://www.shipstation.com/developer-api/#/reference/orders/orderscreateorder/get-order
+		updateOrder: function(id, changes, callback){ // A combination of get and create...
+			api.getOrder(id, function(err, res, body){
+				if(err) throw err;
+				merge(body, changes);
+				api.addOrder(body, callback);
+			});
+		},
 		deleteOrder: '/orders/{id}',
 		setOrderHold: '/orders/holduntil', //{orderId, holdUntilDate}
 		setLabelForOrder: '/orders/createlabelfororder', // http://www.shipstation.com/developer-api/#/reference/orders/orderscreatelabelfororder/post

@@ -1,6 +1,6 @@
 {
   "name": "node-shipstation",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Simplify nodeJS integration with shipstation",
   "main": "nodeshipstation.js",
   "scripts": {

@@ -42,6 +42,7 @@ shipstation.callMethods();
 | **getOrdersByTag** ({orderStatus, tagId}, callback) | callback(err, res, body) | Gets all orders with the specified `orderStatus` and `tagId`.  |
 | **getOrder** (id, callback) | callback(err, res, body) | Gets an order by id.  |
 | **addOrder** (order, callback) | callback(err, res, body) | Adds an order. [`order`](http://www.shipstation.com/developer-api/#/reference/orders/orderscreateorder/get-order) |
+| **updateOrder** (id, changes, callback) | callback(err, res, body) | Updates an order with the changes passed to the method. |
 | **deleteOrder** (id, callback) | callback(err, res, body) | Deletes an order by id.  |
 | **setOrderHold** ({orderId, holdUntilDate}, callback) | callback(err, res, body) | Sets a hold on the specified order until the specified date `string`.  |
 | **setLabelForOrder** (label, callback) | callback(err, res, body) | Sets the label for the specified order. [`label`](http://www.shipstation.com/developer-api/#/reference/orders/orderscreatelabelfororder/post)  |
