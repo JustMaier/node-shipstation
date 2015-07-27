@@ -161,6 +161,10 @@ module.exports = function(apiKey, apiSecret){
 					api.deleteOrder(id, callback);
 					return order;
 				},
+				update: function(changes, callback){
+					api.updateOrder(id, changes, callback);
+					return order;
+				},
 				hold: function(date, callback){
 					if(typeof date == 'object') date = date.ToISOString();
 					api.setOrderHold({orderId: id, holdUntilDate: date}, callback);
