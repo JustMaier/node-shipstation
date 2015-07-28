@@ -75,7 +75,7 @@ node-shipstation has a few helpers that make it easier to make several different
 | Helper        | Methods                              |
 |---------------|--------------------------------------|
 | **carrier(id)** | `addFunds(amount, callback)` `packages(callback)` `services(callback)` |
-| **order(id)** | `delete(callback)` `hold(date, callback)` `addTag(tagId, callback)` `removeTag(tagId, callback)` `shipped(data, callback)` `label(data, callback)` |
+| **order(id)** | `get(callback)` `delete(callback)` `hold(date, callback)` `update({changes}, callback)` `addTag(tagId, callback)` `removeTag(tagId, callback)` `shipped(data, callback)` `label(data, callback)` |
 | **store(id)** | `update(data, callback)` `status(callback)` `refresh(callback)` `deactivate(callback)` `reactivate(callback)` |
 
 ## Examples
