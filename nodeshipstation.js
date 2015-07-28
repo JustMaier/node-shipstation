@@ -157,6 +157,10 @@ module.exports = function(apiKey, apiSecret){
 		removeTagFromOrder: new postMethod('/orders/removetag'), //{orderId, tagId}
 		order: function(id){
 			var order = {
+				get: function(callback){
+					api.getOrder(id, callback);
+					return order;
+				},
 				delete: function(callback){
 					api.deleteOrder(id, callback);
 					return order;
