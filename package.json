@@ -1,6 +1,6 @@
 {
   "name": "node-shipstation",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Simplify nodeJS integration with shipstation",
   "main": "nodeshipstation.js",
   "scripts": {
@@ -16,6 +16,10 @@
     "api"
   ],
   "author": "Justin Maier <just.maier@gmail.com> (http://justinmaier.com)",
+  "contributors": [{
+      "name": "Michael Telatynski",
+      "email": "postmaster@webdevguru.co.uk"
+  }],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/justmaier/node-shipstation/issues"
