@@ -212,8 +212,12 @@ module.exports = function(apiKey, apiSecret){
 		updateStore: '/stores/{id}', // http://www.shipstation.com/developer-api/#/reference/stores/store/update-store
 		getStoreRefreshStatus: '/stores/getrefreshstatus?storeId={id}',
 		refreshStore: function(id, callback){
-			api.post('/stores/refreshstore', {storeId: id}, callback);
-		}, // {storeId, refreshDate}
+			if(typeof id == 'function'){
+				callback = id;
+				id = null;
+			}
+			api.get('/stores/refreshstore', id != null? {storeId: id} : {}, callback);
+		},
 		deactivateStore: function(id, callback){
 			api.post('/stores/deactivate', {storeId: id}, callback);
 		},
