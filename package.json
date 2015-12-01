@@ -16,16 +16,19 @@
     "api"
   ],
   "author": "Justin Maier <just.maier@gmail.com> (http://justinmaier.com)",
-  "contributors": [{
+  "contributors": [
+    {
       "name": "Michael Telatynski",
       "email": "postmaster@webdevguru.co.uk"
-  }],
+    }
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/justmaier/node-shipstation/issues"
   },
   "homepage": "https://github.com/justmaier/node-shipstation",
   "dependencies": {
-    "request": "^2.53.0"
+    "request": "^2.67.0",
+    "simple-rate-limiter": "^0.2.3"
   }
 }
