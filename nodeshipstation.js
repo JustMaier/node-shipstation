@@ -1,7 +1,8 @@
-module.exports = function(apiKey, apiSecret){
-	var request = require('request'),
+module.exports = function(apiKey, apiSecret, to, per){
+	var limiter = require("simple-rate-limiter"),
+		request = require("request"),
 		apiUrl = 'https://ssapi.shipstation.com',
-		baseRequest = request.defaults({
+		baseRequest = limiter(request.defaults({
 			headers: {
 				'Accept': 'application/json',
 				'Content-Type': 'application/json'
@@ -11,8 +12,10 @@ module.exports = function(apiKey, apiSecret){
 				user: apiKey,
 				pass: apiSecret
 			}
-		}),
-		deepValue = function (obj, path) {
+		})).to(40).per(60);
+	if (to) baseRequest.to(to);
+	if (per)baseRequest.per(per);
+	var deepValue = function (obj, path) {
 			for (var i = 0, path = path.split('.'), len = path.length; i < len; i++) {
 				obj = obj[path[i]];
 			};
@@ -80,40 +83,43 @@ module.exports = function(apiKey, apiSecret){
 		            target[ property ] = sourceProperty;
 		        }
 		    }
-		    
+
 		    for (var a = 2, l = arguments.length; a < l; a++) merge(target, arguments[a]);
-		    
+
 		    return target;
 		};
 
 	var api = {
 		get: function(link, options, callback){
 			baseRequest({
+				method: "GET",
 				url: apiUrl + link,
 				qs: options
 			}, callback);
 		},
 		post: function(link, data, callback){
-			baseRequest.post({
+			baseRequest({
+				method: "POST",
 				url: apiUrl + link,
 				json: data
 			}, callback);
 		},
 		put: function(link, data, callback){
-			baseRequest.put({
+			baseRequest({
+				method: "PUT",
 				url: apiUrl + link,
 				json: data
 			}, callback);
 		},
 		del: function(link, options, callback){
-			baseRequest.del({
+			baseRequest({
+				method: "DELETE",
 				url: apiUrl + link,
 				qs: options
 			}, callback);
 		},
 		addAccount: '/accounts/registeraccount', // http://www.shipstation.com/developer-api/#/reference/accounts/register-account/register-account
 		getTags: '/accounts/listtags',
-		
 		getCarriers: '/carriers',
 		getCarrier: '/carriers/getcarrier?carrierCode={id}',
 		addFunds: '/carriers/addfunds', //{carrierCode, amount}
@@ -134,10 +140,10 @@ module.exports = function(apiKey, apiSecret){
 			}
 			return carrier;
 		},
-		
+
 		getCustomers: '/customers',
 		getCustomer: '/customers/{id}',
-		
+
 		getOrders: '/orders', // options http://www.shipstation.com/developer-api/#/reference/orders/orders/post
 		getOrdersByTag: '/orders/listbytag', // requires {orderStatus, tagId}
 		getOrder: '/orders/{id}',
@@ -196,7 +202,7 @@ module.exports = function(apiKey, apiSecret){
 
 			return order;
 		},
-		
+
 		getProducts: '/products',
 		getProduct: '/products/{id}/',
 
