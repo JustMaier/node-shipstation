@@ -12,7 +12,7 @@ module.exports = function(apiKey, apiSecret, to, per){
 				user: apiKey,
 				pass: apiSecret
 			}
-		})).to(36).per(60);
+		})).to(40).per(60);
 	if (to) baseRequest.to(to);
 	if (per)baseRequest.per(per);
 	var deepValue = function (obj, path) {
