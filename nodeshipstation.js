@@ -106,7 +106,7 @@ module.exports = function(apiKey, apiSecret, to, per){
 		},
 		put: function(link, data, callback){
 			baseRequest({
-				method: "PUT"
+				method: "PUT",
 				url: apiUrl + link,
 				json: data
 			}, callback);
